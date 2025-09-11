@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+int main() {
+    int deposits[100], withdrawals[100];
+    int depCount = 0, withCount = 0;
+    int choice, amount;
+    int totalDeposits = 0, totalWithdrawals = 0, balance = 0;
+
+    printf("=== Business Transactions Helper ===\n");
+
+    do {
+        printf("\nChoose an option:\n");
+        printf("1. Add Deposit\n");
+        printf("2. Add Withdrawal\n");
+        printf("3. Show Summary\n");
+        printf("4. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Enter deposit amount: ");
+                scanf("%d", &amount);
+                deposits[depCount++] = amount;
+                totalDeposits += amount;
+                balance += amount;
+                printf("Deposit added successfully!\n");
+                break;
+
+            case 2:
+                printf("Enter withdrawal amount: ");
+                scanf("%d", &amount);
+                withdrawals[withCount++] = amount;
+                totalWithdrawals += amount;
+                balance -= amount;
+                printf("Withdrawal added successfully!\n");
+                break;
+
+            case 3:
+                printf("\n=== Transaction Summary ===\n");
+                printf("Total Deposits   : %d\n", totalDeposits);
+                printf("Total Withdrawals: %d\n", totalWithdrawals);
+                printf("Current Balance  : %d\n", balance);
+
+                if(totalDeposits > totalWithdrawals) {
+                    printf("Status: More Deposits than Withdrawals \n");
+                } else if(totalWithdrawals > totalDeposits) {
+                    printf("Status: More Withdrawals than Deposits \n");
+                } else {
+                    printf("Status: Deposits and Withdrawals are Equal \n");
+                }
+                break;
+
+            case 4:
+                printf("Exiting... Thank you!\n");
+                break;
+
+            default:
+                printf("Invalid choice, try again.\n");
+        }
+    } while(choice != 4);
+
+    return 0;
+}
+
+
